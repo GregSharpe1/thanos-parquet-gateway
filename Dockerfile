@@ -38,7 +38,8 @@ FROM alpine:latest
 
 # Install runtime dependencies
 RUN apk add --no-cache \
-    ca-certificates
+    ca-certificates \
+    aws-cli
 
 # Create non-root user
 RUN addgroup -g 1001 -S thanos && \

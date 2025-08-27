@@ -75,6 +75,7 @@ func (s *Discoverer) Metas() map[string]schema.Meta {
 func (s *Discoverer) Discover(ctx context.Context) error {
 	m := make(map[string][]string)
 	err := s.bkt.Iter(ctx, "", func(n string) error {
+		fmt.Printf("[ParquetDiscoverer] Inspecting bucket location: %s\n", n) // DEBUG LINE
 		id, file, ok := schema.SplitBlockPath(n)
 		if !ok {
 			return nil
@@ -277,6 +278,7 @@ func (s *TSDBDiscoverer) Metas() map[string]metadata.Meta {
 func (s *TSDBDiscoverer) Discover(ctx context.Context) error {
 	m := make(map[string][]string)
 	err := s.bkt.Iter(ctx, "", func(n string) error {
+		fmt.Printf("[TSDBDiscoverer] Inspecting bucket location: %s\n", n) // DEBUG LINE
 		split := strings.Split(n, "/")
 		if len(split) != 2 {
 			return nil

@@ -146,6 +146,8 @@ func registerServeApp(app *kingpin.Application) (*kingpin.CmdClause, func(contex
 			return fmt.Errorf("unable to setup bucket: %w", err)
 		}
 
+		fmt.Println("Bucket setup complete")
+
 		discoverer, err := setupDiscovery(ctx, &g, log, bkt, opts.discovery)
 		if err != nil {
 			return fmt.Errorf("unable to setup discovery: %w", err)
